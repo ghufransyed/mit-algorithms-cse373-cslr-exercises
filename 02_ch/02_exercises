@@ -122,3 +122,46 @@ in the average case
 Worst-case: n elements need to be checked (if target not in array)
 = theta(n)
 
+2.2-4
+We can explicitly test for the best-case scenario, and return
+the correct value, giving constant time i.e. we can cheat :)
+
+2.3-1
+3 41 52 26 38 57 9 49 ->
+(3 41) (26 52) (38 57) (9 49) ->
+(3 26 41 52) (9 38 49 57) ->
+(3 9 26 38 41 49 52 57)
+
+2.3-2
+see merge-sort project in 02_ch
+
+2.3-3
+Use mathematic induction to show that when n is an exact power
+of 2, the solution of the following recurrence is T(n) = n lg n
+
+T(n) = 2 if n=2,
+T(n) = 2T(n/2) + n if n = 2^k, for k>1
+
+Let P(k) = T(2^k)
+
+Base case:
+P(1) = 2 = 2 lg 2 = 2^1 lg 2^1
+
+Iterative case:
+Assume that T(n) = nlg n
+Then P(k) = T(2^k) = 2^k lg 2^k
+
+P(k+1) = T (2^(k+1)) = 2T(2^(k+1)/2) + 2^(k+1)
+= 2T(2^k) + 2^(k+1)
+= 2 (2^k lg 2^k) + 2^(k+1)
+= 2^(k+1) lg 2^k + 2^(k+1)
+= 2^(k+1)(lg 2^k + 1)
+= 2^(k+1)(lg 2^k + lg 2)
+= 2^(k+1)(k lg 2 + lg 2)
+= 2^(k+1)(k+1)(lg 2)
+= 2^(k+1)(lg 2^(k+1))
+QED
+
+2.3-4
+
+

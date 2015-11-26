@@ -8,20 +8,20 @@ public class MergeSort {
         int[] test_array = new int[5];
         test_array[0] = 5;
         test_array[1] = 4;
-        test_array[2] = 10;
+        test_array[2] = 1;
         test_array[3] = 2;
-        test_array[4] = 1;
+        test_array[4] = 3;
         
         System.out.println(Arrays.toString(test_array));
         System.out.println(Arrays.toString(sort(test_array)));
     }
     
-    public static int[] sort(int[] ary)
+    private static int[] sort(int[] ary)
     {
         int p,q,r;
         p = 0;
         r = ary.length - 1;
-        int[] sort_result_ary = new int[ary.length];
+        int[] sort_result_ary; 
         
         if (p < r)
         {
@@ -40,7 +40,7 @@ public class MergeSort {
         
     }
     
-    public static int[] merge(int[] ary1, int[] ary2)
+    private static int[] merge(int[] ary1, int[] ary2)
     {
         int ary_length = ary1.length + ary2.length;
         int[] merge_result_ary = new int[ary_length];
