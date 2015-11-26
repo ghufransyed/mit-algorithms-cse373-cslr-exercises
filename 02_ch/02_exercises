@@ -64,4 +64,54 @@ if carry == 1
     C[i] <- 1
 return result
 
+2.2-1
+n^3/1000 - 100n^2 - 100n + 3 is 
+theta(n^3)
+
+2.2-2
+Selection sort
+Write pseudocode for this algorithm, which is known as selection sort.
+
+Input: Array containing n integers a_1,a_2...a_n
+Output: Array containing a permutation of A, with
+a'_1..a'_n $ a'_1 < a'_2 < .. < a'_n
+
+min_value <- A[1]
+for i <- 1 to n-1
+    for j <- 2 to n
+        if A[j] < min_value
+            min_value <- A[j]
+    A[i] = min_value
+
+
+What loop invariant does this algorithm maintain?
+Why does it need to run for only the first n^1 elements,
+rather than for all n elements?
+
+loop invariant: A[1..i] contains i elements, which are monotonically
+increasing (sorted)
+
+Initialization:
+A[1..i] = A[1]
+Thus A[1] is sorted (trivially)
+
+Maintenance:
+Before i is incremented, A[1..i] is sorted and contains the i smallest
+elements from A. After i is incremented,
+The inner loop iterates through from A[i+1] to A[n], on on exit, 
+min_value contains the smallest value in A[i+1] to A[n]
+A[i] is assigned the value of min_value, at which point A[i] is again
+sorted and containing the i smallest elements of A
+
+Termination
+The out loop terminates when i = n-1
+A[1..(n-1)] contains the n-1 smallest elements in A, and is sorted
+A[n] therefore must contain the largest element of A
+ A[1..n] is therefore sorted.
+
+Give the best-case and worst-case running times of selection sort in ‚-notation.
+Best-case: already sorted, theta(n^2)
+Worst-case: reverse sorted, theta(n^2)
+
+2.2-3
 
