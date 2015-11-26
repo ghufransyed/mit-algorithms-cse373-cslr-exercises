@@ -1,0 +1,55 @@
+1.1-1
+A list of books, to be presented on a website in alphabetical order (example of sorting)
+Making a fence around an orchard (computing a convex hull)
+
+1.1-2
+Measures of efficiency other than speed: space (memory)
+
+1.1-3
+an array is very good for ordered information, and random access (based on index)
+It is not good for searching for a given value, because that requires examining 
+each element in turn, each time the search needs to be done. 
+
+1.1-4
+The shortest path problem is an acyclic graph
+The travelling salesman problem is a cyclic graph
+
+1.1-5
+Come up with a real-world problem in which only the best solution will do.
+This is equivalent to saying that for a given input, there is only one possible 
+acceptable output. For example, sorting a list of books alphabetically has only
+one possible acceptable outcome
+
+
+Then come up with one in which a solution that is "approximately" the best is good enough.
+This is one where there are 2 or more possible solutions defined as acceptable by the 
+algorithm. An example would be the travelling salesman problem
+
+1.2-1
+Give an example of an application that requires algorithmic content at the application level,
+and discuss the function of the algorithms involved.
+
+A scheduling program requires algorithmic content. The algorithm takes a series of inputs
+representing constraints, and calculates an optimal output (a schedule that 'maximally'
+fulfils those contraints)
+
+1.2-2
+Suppose we are comparing implementations of insertion sort and merge sort on the same machine.
+For inputs of size n, insertion sort runs in 8n2 steps,
+while merge sort runs in 64n lg n steps.
+For which values of n does insertion sort beat merge sort?
+
+by equating the two, we can solve for n, is approx 43.5, so
+insertion sort beats merge sort for values of n=43 or less
+
+1.2-3
+What is the smallest value of n such that an algorithm
+whose running time is 100n2 runs faster than an algorithm
+whose running time is 2n on the same machine?
+
+equate the two. with 100n^2 < 2^n
+n > 14.3
+so the smallest value of n for which 100n^2 would be faster than
+2^n is n=15
+
+
