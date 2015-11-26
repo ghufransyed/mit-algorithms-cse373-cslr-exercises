@@ -114,4 +114,11 @@ Best-case: already sorted, theta(n^2)
 Worst-case: reverse sorted, theta(n^2)
 
 2.2-3
+consider linear search algorithm:
+Average-case: n/2 elements need to be checked if uniform distribution
+= theta(n)
+we ignore constant factors, such as the 1/2 that n is multiplied for
+in the average case
+Worst-case: n elements need to be checked (if target not in array)
+= theta(n)
 
