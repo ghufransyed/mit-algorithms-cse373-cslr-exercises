@@ -211,6 +211,16 @@ T(n) = T(1) + lg(n)
 This is the worst-case scenario, where the sought element v is 
 not in the array, so all elements must be searched for.
 
+2.3-6
+using a binary search in each iteration would NOT improve the 
+overall worst-case running time of insertion sort to Theta(n lg n). 
+The linear scan both finds the correct place to put the new value
+on each iteration, and also makes room for the new value by shuffling
+ALL of the values to the right of this position to make room for it.
+Using the binary search would be Theta(lg n), but the subsequent
+shuffling of items to the right would be Theta(n), so the overall
+complexity would still be Theta(n)
+
 
 
 
