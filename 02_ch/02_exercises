@@ -164,4 +164,55 @@ QED
 
 2.3-4
 
+let T(n) represent the running time of the procedure
+T(1) = Theta(1)
+T(n) = C(n-1) + T(n-1)
+
+see link below for info on how to do this:
+http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L14-RecRel.htm
+
+
+2.3-5
+Input: A sequence of n numbers A= <a1,a2,...,an> and a value v
+Output: An index i such that v= A[i] or NIL if v does not appear in A
+
+binary-search(A,v,p,r)
+For Array A,
+
+if (r-p > 1)
+    q <- (p + r)/2
+    if A[q] == v
+        return q // stop with success
+    left_result = binary-search(A,v,p,q)
+    if (left_result is not NIL)
+        return left_result // stop with success
+    right_result = binary-search(A,v,q+1,r)
+        return right_result // stop with success or failure
+else
+    if A[p] == v
+        return p
+    return NIL
+
+
+Base case:
+T(1) = O(1) = 1
+
+Iterative:
+T(n) = T(n/2) + 1
+T(n/2) = T(n/4) + 1
+...
+T(2) = T(1) + 1
+
+Summing the above and subtracting like terms on each side:
+T(n) = T(1) + lg(n)
+     = 1 + lg(n)
+     = O(lg(n))
+
+This is the worst-case scenario, where the sought element v is 
+not in the array, so all elements must be searched for.
+
+
+
+
+
 
