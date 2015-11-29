@@ -221,6 +221,16 @@ Using the binary search would be Theta(lg n), but the subsequent
 shuffling of items to the right would be Theta(n), so the overall
 complexity would still be Theta(n)
 
+2.3-7
+Describe a theta(n lg n)-time algorithm that, given a set S of n
+integers and another integer x, determines whether or not there exist
+two elements in S whose sum is exactly x.
+
+First, sort the elements of S using merge sort theta(n lg n)
+Then for each element of S (n), use binary search to try and find
+its' corresponding element (lg n) = n lg n
+The algorithm is therefore theta(n lg n + n lg n) = theta (n lg n)
+
 
 
 

@@ -1,0 +1,52 @@
+2-1
+Insertion sort on small arrays in merge sort
+
+Consider a modification to merge sort in which
+n/k sublists of length k are sorted using insertion sort 
+and then merged using the standard merging mechanism, 
+where k is a value to be determined.
+
+a) show that insertion sort can sort the n/k sublists, 
+each of length k, in theta(nk) worst-case time
+
+each sublist of length k is sorted in theta( k^2 )time
+There are n/k of them, so the total time to sort
+the sublists =theta( n/k * k^2 ) = theta (nk) worst
+case time.
+
+b)
+Show how to merge the sublists in theta(n lg(n/k)) worst-case
+time.
+Assume that there are n/k sublists, already sorted and ready to merge
+Further, assume that n/k = 2^p where p is a natural number
+
+Calculating number of levels:
+Then 2^something = number of levels
+So, number of levels = log_2_something
+
+in our case, number of levels = log_2_(number of sorted sublists)
+= Theta(log_2(n/k))
+
+Calculating time per level:
+at each level, there are n/k sublists with k items each = n/k * k 
+= n = Theta(n)
+
+Therefore, the total time of merging the n/k sublists that were 
+sorted using insertion sort is Theta(n * log_2(n/k))
+
+c)
+Given that the modified algorithm runs in theta(nk + n lg(n/k))
+worst-case time, what is the largest value of k as a function of n
+for which the modified algorithm has the same running time as
+standard merge sort, in terms of Theta-notation?
+
+Equate theta(n + lg (n/k)) = theta(n lg n)
+then k = n - n lg n + lg n
+
+d) 
+In practice, you would determine this empirically. In other words,
+you would test both algorithms on a particular machine and see
+above what level of k the 'pure 'merge sort dominates the insertion sort
+version of merge-sort. 
+
+
