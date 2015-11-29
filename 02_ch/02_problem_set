@@ -49,4 +49,56 @@ you would test both algorithms on a particular machine and see
 above what level of k the 'pure 'merge sort dominates the insertion sort
 version of merge-sort. 
 
+2.2 Correctness of bubblesort
+
+BUBBLESORT(A)
+for i = 1 to A.length - 1
+    for j = A.length downto i + 1
+        if A[j] < A[j-1]
+            exchange A[j] with A[j-1]
+
+a). In addition to correctness, we also need to show that it is 
+correct for a reverse sorted sequence.
+
+b)
+for loop in lines 2-4:
+Initialization: A[j-1] = A[n-1] for input of size n,
+contains the smallest element in A[j-1..n]
+
+Maintenance:
+At the end of each loop, A[j-1] contains the smallest element in
+the subarray A[j-1..n]
+
+Termination
+after termination, A[i+1-1] = A[i] contains the smallest element 
+in the subarray A[i..n]
+
+c)
+Initial:
+The array A'[1..i] = A'[1] contains the (trivially) sorted array
+of length 1, and contains the i = 1 smallest elements of A
+
+Maintenance:
+The array A'[1..i-1] contains the sorted array of length i,
+and contains the i smallest elements of A
+
+Termination
+The array A'[i..i] contains the sorted array of length i,
+and contains the i smallest elements of A. Therefore, A[i + 1] = A[n]
+which is the final element in the array, contains the largest element.
+Therefore, the array A is sorted.
+
+d) 
+The worst case running time of bubble sort is for a reverse-sorted
+array.
+Each inner loop iteration is O(1)
+Each outer loop iteration is O(n)
+The number of outer loop iterations is n
+Therefore, the worst-case running time of bubblesort is O(n^2)
+
+
+
+
+
+
 
