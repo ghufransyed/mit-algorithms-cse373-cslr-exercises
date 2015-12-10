@@ -5,12 +5,15 @@ import java.util.Arrays;
 public class MergeSort {
     public static void main(String[] args)
     {
-        int[] test_array = new int[5];
-        test_array[0] = 5;
+        int[] test_array = new int[8];
+        test_array[0] = 7;
         test_array[1] = 4;
-        test_array[2] = 1;
-        test_array[3] = 2;
+        test_array[2] = 0;
+        test_array[3] = 6;
         test_array[4] = 3;
+        test_array[5] = 5;
+        test_array[6] = 2;
+        test_array[7] = 1;
         
         System.out.println(Arrays.toString(test_array));
         System.out.println(Arrays.toString(sort(test_array)));

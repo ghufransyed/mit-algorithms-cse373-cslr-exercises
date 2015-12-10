@@ -17,7 +17,7 @@ case time.
 b)
 Show how to merge the sublists in theta(n lg(n/k)) worst-case
 time.
-Assume that there are n/k sublists, already sorted and ready to merge
+Assume that there are n/k sublists (leaf nodes), already sorted and ready to merge
 Further, assume that n/k = 2^p where p is a natural number
 
 Calculating number of levels:
@@ -28,8 +28,12 @@ in our case, number of levels = log_2_(number of sorted sublists)
 = Theta(log_2(n/k))
 
 Calculating time per level:
-at each level, there are n/k sublists with k items each = n/k * k 
+at the lowest level, there are n/k sublists with k items each = n/k * k 
 = n = Theta(n)
+
+at each level above, there are twice as many items in each list, and half
+as many lists, so the total number of items merged at each level is still n.
+
 
 Therefore, the total time of merging the n/k sublists that were 
 sorted using insertion sort is Theta(n * log_2(n/k))
@@ -46,8 +50,8 @@ then k = n - n lg n + lg n
 d) 
 In practice, you would determine this empirically. In other words,
 you would test both algorithms on a particular machine and see
-above what level of k the 'pure 'merge sort dominates the insertion sort
-version of merge-sort. 
+above what level of k the 'pure' merge sort dominates the insertion sort
+version of merge-sort.
 
 2.2 Correctness of bubblesort
 
@@ -61,6 +65,7 @@ a). In addition to correctness, we also need to show that it is
 correct for a reverse sorted sequence.
 
 b)
+*Original answer by me*
 for loop in lines 2-4:
 Initialization: A[j-1] = A[n-1] for input of size n,
 contains the smallest element in A[j-1..n]
@@ -73,7 +78,41 @@ Termination
 after termination, A[i+1-1] = A[i] contains the smallest element 
 in the subarray A[i..n]
 
+*Original answer by me*
+
+*New answer by me after working more on loop invariants*
+Before the (t)th iteration, A[j] contains the smallest element in
+the uppermost (t) elements of A.
+
+Initialization:
+Before the 1st iteration, A[j] = A[A.length] contains the 
+smallest element in the uppermost 1 elements of A.
+
+Maintenance:
+Assume that before the t'th iteration, A[j] contains the smallest
+element in the uppermost (t) elements of A.
+
+If A[j-1] > A[j]
+    the contents of A[j-1] and A[j] are exchanged
+A[j-1] then contains the smallest element in the uppermost
+ (t+1) elements of A.
+j is then decremented (j = j-1), t = t + 1 so 
+A[j-1] -> A[j]
+t + 1 -> t
+, maintaining the loop invariant before the (t)th iteration
+
+Termination:
+Termination value of j is  i (makes guard condition false)
+This is at the 'beginning' of the t'th iteration = (A.length - i +1)'th iteration
+
+A[j] = A[i] contains the smallest element in the uppermost 
+(A.length - i + 1) elements of A
+
+
+
+
 c)
+* OLD ANSWER*
 Initial:
 The array A'[1..i] = A'[1] contains the (trivially) sorted array
 of length 1, and contains the i = 1 smallest elements of A
@@ -88,13 +127,135 @@ and contains the i smallest elements of A. Therefore, A[i + 1] = A[n]
 which is the final element in the array, contains the largest element.
 Therefore, the array A is sorted.
 
-d) 
+* NEW ANSWER *
+Loop invariant: At the beginning of the i'th iteration, 
+The first (i-1) elements of A contain the smallest (i-1) elements of A,
+sorted in increasing order.
+
+Initialization:
+i = 1
+The first (i-1) = 0 elements of A contain the smallest 0 elements of A
+, sorted in increasing order.
+
+Maintenance:
+Assume that at the beginning of the i'th iteration, 
+the first (i-1) elements of A contain the smallest (i-1) elements of A
+sorted in increasing order.
+
+Then after termination of the loop in lines 2-4,
+A[i] contains the smallest element in the  (A.length - i + 1) uppermost
+elements in A
+
+This means the first (i-1 + 1)= i elements of A contain the smallest
+(i-1 + 1) = i elements in A, sorted in increasing order (since the 
+smallest element of the upper (A.length - i + 1) elements of A must
+be larger than any of the smallest i elements).
+
+i is then incremented, so 
+i -> i + 1
+This maintains the loop invariant, so the first (i - 1) elements of
+A contain the smallest (i-1) elements of A, sorted in increasing
+order
+
+Termination:
+i = A.length (so guard condition fails)
+Then the first A.length - 1 elements of A contain the smallest 
+A.length -1 elements of A, sorted in increasing order.
+This must mean that A[A.length] is the largest
+element in A, so the Array is now sorted.
+
+d)
 The worst case running time of bubble sort is for a reverse-sorted
 array.
-Each inner loop iteration is O(1)
+Each inner loop iteration is O(n)
 Each outer loop iteration is O(n)
-The number of outer loop iterations is n
 Therefore, the worst-case running time of bubblesort is O(n^2)
+
+2-3 Correctness of Horner's rule
+
+y = 0
+for i = n downto 0
+    y = a_i + x.y
+
+a)
+In terms of theta-notation, what is the running time of this code
+fragment for Horner's rule?
+Each iteration: theta(1)
+There are n + 1 iterations
+So overall, the running time is theta(n)
+
+b)
+total = 0
+for i = 0 to n
+    total = total + a_i * x^i
+
+If we assume that addition and multiplication are O(1),
+and exponentiation is defined in terms of these operations.
+then each iteration takes O(n) time
+and there are n iterations
+so the running time is O(n^2) which is slower than Horner's rule.
+
+c)
+At the start of each iteration of the for loop,
+y = sum from k=0 to (n-(i+1)) of
+                  a_(k+i+1) * x^k
+
+
+Initialization:
+At the start of the first loop,
+y = 0
+sum from k=0 to n-(i+1) of a_(k+i+1)* x^k = 
+sum from k=0 to n - (n+1) = k = 0 to -1 which has no terms, so = 0 = y
+
+
+Maintenance:
+t = n - (i+1)
+At the start of the t'th  iteration of the loop, assume
+y = sum from k=0 to (n-(i+1)) of
+                  a_(k+i+1) * x^k
+
+Then during t'th iteration, y = a_i + x * y =
+a_i + x * sum from k=0 to (n-(i+1)) of a_(k+i+1) * x^k =
+a_i * x^0 + sum from k = 0 to (n-(i+1)) of a_(k+i+1) * x^(k+1) =
+let new_k = old_k + 1
+then old_k = new_k - 1
+
+we substitute each instance of old_k with new_k - 1, 
+and change summation indices as needed:
+a_i * x^0 + sum from old_k = 0 to (n-i-1)) of a_(old_k+i+1)* x^(old_k + 1) 
+=
+a_i * x^0 + sum from new_k = 1 to (n-i) of a_(new_k+i)* x^(new_k) =
+a_i * x^0 + sum from k = 1 to (n-i) of a_(k+i) * x^k
+ =
+a_(i+0)k^0 + sum from k = 1 to (n-i) of a_(k+i) * x^k
+= 
+sum from k= 0 to (n-i) of a_(k+i) * x^k
+
+let old_i = i at end of this loop
+let new_i = i at beginning of next loop
+
+i is then decremented, so:
+new_i = old_i -1
+therefore,
+old_i = new_i + 1
+
+so we substitute each instance of old_i with new_i + 1:
+so from y = sum from k=0 to (n-i) of a_(k+i) * x^k
+to y = sum from k = 0 to (n-(i+1) of a_(k+i+1) * x^k)
+ie the original loop invariant is restored.
+
+Termination:
+The final value of i = -1 (so guard condition fails)
+Then the loop invariant is:
+y = sum from k = 0 to (n-(i+1) of a_(k+i+1) * x^k)
+= sum from k = 0 to n of a_k * x^k
+
+2-3.d
+Based on the proof using the loop invariant above, the code fragment
+does correctly evaluate a polynomical characterized by the 
+coefficients a_0,a_1,...,a_n
+
+
 
 
 
