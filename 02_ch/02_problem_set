@@ -288,8 +288,15 @@ Either change each procedure to also return the number of inversions
 and sum them, or use a variable scoped to the top level to store the
 result from each sub-array, e.g. inversion_sum
 
-Within the merge procedure, add one to inversion_sum each time 
+Within the merge procedure, 
+make a new local variable, local_inversions
+add one to local_inversions each time
 the next element to be merged is taken from the right-hand subarray.
+
+Then add the value of local_inversions to inversion_sum each time 
+an element is added from the left hand array.The reason is that each
+element taken from the righthand array is part of an inversion pair
+with EVERY element taken thereafter from the left-hand array.
 
 
 

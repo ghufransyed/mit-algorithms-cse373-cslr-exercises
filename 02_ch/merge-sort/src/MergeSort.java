@@ -3,23 +3,16 @@ import java.util.Arrays;
  * Created by ghufran on 11/25/15.
  */
 public class MergeSort {
-    public static void main(String[] args)
+
+
+    int inversion_sum = 0;
+    
+    public int inversions()
     {
-        int[] test_array = new int[8];
-        test_array[0] = 7;
-        test_array[1] = 4;
-        test_array[2] = 0;
-        test_array[3] = 6;
-        test_array[4] = 3;
-        test_array[5] = 5;
-        test_array[6] = 2;
-        test_array[7] = 1;
-        
-        System.out.println(Arrays.toString(test_array));
-        System.out.println(Arrays.toString(sort(test_array)));
+        return inversion_sum;
     }
     
-    private static int[] sort(int[] ary)
+    public int[] sort(int[] ary)
     {
         int p,q,r;
         p = 0;
@@ -43,12 +36,15 @@ public class MergeSort {
         
     }
     
-    private static int[] merge(int[] ary1, int[] ary2)
+    public int[] merge(int[] ary1, int[] ary2)
     {
         int ary_length = ary1.length + ary2.length;
         int[] merge_result_ary = new int[ary_length];
         int ptr1 = 0; 
         int ptr2 = 0;
+
+        int local_inversions = 0;
+        
         for (int i = 0; i < ary_length ; i++)
         {
             if (ptr1 >= ary1.length && ptr2 >= ary2.length)
@@ -62,14 +58,17 @@ public class MergeSort {
             else if (ptr2 >= ary2.length)
             {
                 merge_result_ary[i] = ary1[ptr1++];
+                inversion_sum += local_inversions;
             }
             else if (ary1[ptr1] <= ary2[ptr2])
             {
                 merge_result_ary[i] = ary1[ptr1++];
+                inversion_sum += local_inversions;
             }
             else
             {
-                merge_result_ary[i] = ary2[ptr2++]; 
+                merge_result_ary[i] = ary2[ptr2++];
+                local_inversions += 1;
             }
         }
         return merge_result_ary;
