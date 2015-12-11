@@ -1,0 +1,39 @@
+3.1-1
+let f(n) and g(n) be asymptotically non-negative functions
+
+Prove that max(f(n),g(n)) = theta(f(n) + g(n))
+
+0 <= f(n) <= max(f(n),g(n)) <= f(n) + g(n)
+0 <= g(n) <= max(f(n),g(n)) <= f(n) + g(n)
+0 <= f(n) + g(n) <= 2max(f(n),g(n)), so
+0 <= 1/2(f(n) + g(n)) <= max(f(n),g(n)) <= f(n) + g(n)
+
+let h(n) = (f(n) + g(n)). Then
+0 <= 1/2h(n) <= max(f(n),g(n)) <= h(n)
+so
+max(f(n),g(n)) = theta(h(n))
+
+3.1-2
+
+Prove that (n+a)^b = theta(n^b)
+
+n-|a| <= n+a <= n+|a|
+When |a|<=n, then
+n+a <= 2n
+
+When |a|<=(n/2), then
+n/2 <= n-|a|
+
+So when |a| <= (n/2) ,
+n >= |2a| >= |a|, and 
+0 <= n/2 <= n-|a| <= n+a <= n+|a| <= 2n
+0 <= n/2 <= n+a <= 2n
+
+Since b > 0,
+0^b <= (n/2)^b <= (n+a)^b <= (2n)^b
+0   <= (1/2)^b * n^b <= (n+a)^b <= 2^b * n^b
+
+since (1/2)^b and (2)^b are constants, 
+(n+a)^b = theta(n^b)
+
+
