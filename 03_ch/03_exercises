@@ -37,3 +37,84 @@ since (1/2)^b and (2)^b are constants,
 (n+a)^b = theta(n^b)
 
 
+3.1-3
+Explain why the statement,
+"The running time of Algorithm A is at least O(n^2)" is meaningless.
+
+Let the running time be T(n). T(n) >= O(n^2) means that
+T(n) >= f(n) for some function in the set O(n^2)
+
+However, the set O(n^2) means the set of functions f(n),
+there exist constants n_0 and c, such that
+0 <= f(n) <= c*g(n) for all n > n_0
+
+However, the function h(n)=0 for all n is in O(n^2), and 
+running times are always non-negative. So stating that 
+T(n) >= O(n^2) is equivalent to stating that T(n) >= 0
+
+
+3.1-4
+2^(n+1) = 2*2^n = O(2^n)
+
+2^(2n) = (2^2)^n = 4^n = O(4^n) != O(2^n)
+
+3.1-5
+
+let P(n): f(n)= theta(g(n))
+let Q(n): f(n) = O(g(n)) and f(n) = Omega(g(n))
+
+Prove P -> Q:
+Assume P
+Then 0 <= c1*g(n) <= f(n) <= c2*g(n)
+So 0<= c1*g(n) <= f(n) , meaning f(n) = Omega(g(n))
+And 0 <= f(n) <= c2*g(n), meaning f(n) = O(g(n))
+
+Prove Q -> P:
+Assume Q
+Then 0 <= c1*g(n) <= f(n) and
+0 <= f(n) <= c2*g(n)
+so 0<= c1*g(n) <= f(n) <= c2*g(n), so f(n) = theta(g(n))
+QED
+
+
+3.1-6
+Prove that the running time of an algorithm is theta(g(n))
+if and only if its worst-case running time is O(g(n))
+and its best-case running time is Omega(g())
+
+Let P(n): f(n) = theta(g(n))
+
+Let Tb(n) = best-case running time
+Let Tw(n) = worst-case running time
+Let Q(n): Tb(n) = Omega(g(n)), Tw(n) = O(g(n))
+
+Proof:
+P -> Q
+
+Assume P(n)
+Then 0 <= c1*g(n) <= f(n) <= c2*g(n)
+Tb(n) <= f(n) <= Tw(n)
+Then 0 <= c1*g(n)<=Tb(n)
+i.e. the best-case running time is Omega(g(n))
+
+Similarly,
+0 <= Tw(n) <= c2*g(n), so
+the worst-case running time is O(g(n))
+
+Q -> P
+Assume Q(n)
+This proof is essentially P -> Q in reverse:
+If Q(n), then  Tb(n) = Omega(g(n)), Tw(n) = O(g(n))
+Then 0 <= c1*g(n)<=Tb(n)
+and 0 <= Tw(n) <= c2*g(n)
+Since Tb(n) <= f(n) <= Tw(n),
+0 <= c1*g(n) <= Tb(n) <= f(n) <=Tw(n) <= c2*g(n)
+so f(n) = theta(g(n))
+
+
+
+
+
+
+
+
