@@ -126,7 +126,43 @@ Theta(g(n,m)) = {f(n,m): there exist positive constants c1,c2 ,n_0,m_0
     for all n >= n_0 or m >= m_0 }
 
 
+3.2-1
+
+Show that if f(n) and g(n) are monotonically increasing functions,
+then so are the functions f(n)+g(n) and f(g(n)),
+and if f(n) and g(n) are in addition nonnegative,
+then f(n)*g(n) is monotonically increasing.
 
 
+3.2-2
+Prove that a^log_b(c) = c^log_b(a)
 
+log_a(c) = log_b(c)/log_b(a)
+log_b(c) = log_a(c) * log_b(a)
+log_a(a) * log_b(c) = log_a(c) * log_b(a)
+log_a(a)^log_b(c) = log_a(c)^log_b(a)
+a^log_b(c) = c^log_b(a)
+
+QED
+
+
+3.2-3
+Prove that lg(n!) = theta(nlg(n))
+
+Using Stirling's approximation:
+lg(n!) = lg(sqrt(2*pi*n)(n/e)^n(1+theta(1/n)))
+= lg(sqrt(2*pi*n)) + lg(n/e)^n + lg(1+theta(1/n))
+= lg(sqrt(2*pi)) + lg(sqrt(n)) + n*lg(n/e) + lg(1+theta(1/n))
+= theta(1) + 1/2lg(n) + theta(n*lg_n) + lg(theta(1) + theta(1/n))
+= theta(1) + theta(lg(n)) + theta(n*lg(n)) + theta(lg(1/n))
+= theta(n*lg(n))
+
+2^n = 2 * 2 * 2 ... n times
+n!  = 1 * 2 * 3 ... n
+So for all n > 2, 2^n < n! so n! = little_omega(2^n)
+
+n^n = n * n * n * ..* n
+n!  = 1 * 2 * 3 * ..* n
+
+So for all n > 1, n! < n^n so n! = o(n^n)
 
